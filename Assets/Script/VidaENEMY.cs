@@ -7,17 +7,18 @@ public class VidaENEMY : MonoBehaviour
 {
     public Slider slider;
     public DestroyEnemy enemy;
-    private void Start()
+    GameManager gameManager;
+     void Start()
     {
-
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
-    private void Update()
+     void Update()
     {
         slider.value = enemy.vidaE;
 
         if (enemy.vidaE == 0)
         {
-
+            gameManager.scorep++;
             Destroy(gameObject);
         }
     }

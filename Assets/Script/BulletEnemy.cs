@@ -10,7 +10,7 @@ public class BulletEnemy : MonoBehaviour
     public float speed = 2;
     move target;
     Vector2 moveDirection;
-  
+    public GameObject fbx;
 
     void Start()
     {
@@ -18,7 +18,7 @@ public class BulletEnemy : MonoBehaviour
         target = GameObject.FindObjectOfType<move>();
         moveDirection = (target.transform.position - transform.position).normalized * speed;
         rb.velocity = new Vector2(moveDirection.x, moveDirection.y);
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, 3f);
     }
 
 
@@ -34,7 +34,9 @@ public class BulletEnemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-           
+            life player = collision.transform.GetComponent<life>();
+            Instantiate(fbx,collision.transform);
+            player.vidaP -= 10;
             Destroy(gameObject, 0.2f);
         }
     }

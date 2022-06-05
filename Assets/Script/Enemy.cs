@@ -29,18 +29,18 @@ public class Enemy : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-   
 
-            //Vida player = other.transform.GetComponent<Vida>();
-            //if (other.tag == "Player")
-            //{
-            //    _enemySpeed = 0;
-            //player.vida -= 10;
-            //    Destroy(this.gameObject);
-            //}
 
-           
-        
+        life player = other.transform.GetComponent<life>();
+        if (other.tag == "Player")
+        {
+            _enemySpeed = 0;
+            player.vidaP -= 10;
+          //  Destroy(this.gameObject);
+        }
+
+
+
 
     }
 }

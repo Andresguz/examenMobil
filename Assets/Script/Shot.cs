@@ -5,9 +5,13 @@ using UnityEngine;
 public class Shot : MonoBehaviour
 {
     public GameObject _laserPrefab;
-    private float _fireRate = 0.2f;
+    private float _fireRate = 0.5f;
     private float _canFire = 0.0f;
+    private bool shotNow;
+    float next;
     public GameObject _laserPos;
+    public AudioSource _audioSource;    
+    public AudioClip _laserClip;
     void Start()
     {
         
@@ -22,14 +26,18 @@ public class Shot : MonoBehaviour
             FireLaser();
            
         }
+    
     }
   public  void FireLaser()
     {
-        //Vector3 offsetY = new Vector3(0, 1.05f, 0);
-
-        //canfire = 1.0f + 0.2f is time.time 1.1f > _canFire no so you cannot shoot
-        //_canFire = Time.time + _fireRate;
+        if (Time.time>next )
+        {
+            next = Time.time+_fireRate;
             Instantiate(_laserPrefab, _laserPos.transform);
+            _audioSource.PlayOneShot(_laserClip);
+        }
+     
+           
     }
 
 }

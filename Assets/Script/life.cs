@@ -5,8 +5,10 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class life : MonoBehaviour
 {
-    public float vida = 100;
+    public float vidaP = 100;
     public Slider sliderVida;
+    public GameObject FVX;
+    
     void Start()
     {
 
@@ -15,12 +17,12 @@ public class life : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        sliderVida.value = vida;
+        sliderVida.value = vidaP;
 
-        if (vida == 0)
+        if (vidaP == 0)
         {
-
-            Destroy(gameObject);
+            Instantiate(FVX,gameObject.transform);
+            Destroy(gameObject,2F);
             SceneManager.LoadScene(0);
 
         }
@@ -28,10 +30,10 @@ public class life : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("nave"))
         {
-            vida -= 10;
-
+           // vidaP -= 10;
+         //   Debug.Log("aa");
             //  Destroy(collision.gameObject);
         }
     }

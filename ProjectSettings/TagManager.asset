@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - laser
+  - nave
   layers:
   - Default
   - TransparentFX

@@ -5,15 +5,36 @@ using UnityEngine;
 public class PARALA : MonoBehaviour
 {
     [SerializeField]
-    float shiftMoodifier;
-    private Gyroscope gyroo;
-    private void Start()
+    private float paralaxMultiple;
+    private Transform cameraTransform;
+    private Vector3 previusCameraPosition;
+    private float spriteWidth, starPosition;
+
+    void Start()
     {
-        gyroo = Input.gyro;
-        gyroo.enabled = true;
+        cameraTransform = Camera.main.transform;
+        previusCameraPosition = cameraTransform.position;
+        //spriteWidth=GetComponent<SpriteRenderer>().bounds.size.x;
+        starPosition = transform.position.x;
     }
-    private void Update()
+
+    // cuanto se emovio
+    void Update()
     {
-        transform.Translate((float)System.Math.Round(gyroo.rotationRateUnbiased.y, 1) * shiftMoodifier, 0f, 0f);
+        float deltaX = (cameraTransform.position.x - previusCameraPosition.x) * paralaxMultiple;
+        //float amountPos=cameraTransform.position.x * (1-paralaxMultiple);
+        transform.Translate(new Vector3(deltaX, 0, 0));
+        previusCameraPosition = cameraTransform.position;
+
+        //if (amountPos>starPosition+spriteWidth)
+        //{
+        //    transform.Translate(new Vector3(spriteWidth, 0, 0));
+        //    starPosition+=spriteWidth;
+        //}
+        //else if (amountPos<starPosition-spriteWidth)
+        //{
+        //    transform.Translate(new Vector3(-spriteWidth, 0, 0));
+        //    starPosition -= spriteWidth;
+        //}
     }
 }

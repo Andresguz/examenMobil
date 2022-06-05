@@ -8,6 +8,10 @@ public class DestroyEnemy : MonoBehaviour
     //public GameObject eliminacion;
 
     public int vidaE = 100;
+    public GameObject HitFVX;
+    public GameObject PosHit;
+    public AudioSource au;
+    public AudioClip des;
     private void Start()
     {
 
@@ -17,8 +21,13 @@ public class DestroyEnemy : MonoBehaviour
        
         if (vidaE == 0)
         {
-            Destroy(gameObject);
+            f();
         }
+    }
+    void f()
+    {
+        Instantiate(HitFVX, PosHit.transform);
+        Destroy(gameObject,0.2f);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -32,15 +41,19 @@ public class DestroyEnemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
 
-
-            Destroy(gameObject);
+            au.PlayOneShot(des);
+            f() ;
+           // Destroy(gameObject);
         }
+       
+       
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            
+            Destroy(gameObject,0.1f);
         }
     }
 }
