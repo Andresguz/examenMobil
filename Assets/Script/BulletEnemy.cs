@@ -18,7 +18,7 @@ public class BulletEnemy : MonoBehaviour
         target = GameObject.FindObjectOfType<move>();
         moveDirection = (target.transform.position - transform.position).normalized * speed;
         rb.velocity = new Vector2(moveDirection.x, moveDirection.y);
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 4f);
     }
 
 
